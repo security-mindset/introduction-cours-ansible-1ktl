@@ -1,0 +1,24 @@
+---
+- name: Installer et configurer Nginx
+  hosts: "{{host}}"
+  become: true
+  tasks:
+  - name: Installer Nginx (Debian/Ubuntu)
+    apt:
+      name: nginx
+      state: present 
+      force_apt_get: yes
+  # - name: start nginx 
+  #   shell: sudo systemctl start nginx
+  - name: start nginx 
+    service: 
+        name: nginx
+        state: started
+        enabled: yes
+
+  # - name: stop nginx
+  #   service: 
+  #     name: nginx 
+  #     state: stopped 
+  #     enabled: no
+   
