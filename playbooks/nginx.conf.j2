@@ -1,0 +1,7 @@
+server {
+	listen {{ http_port }};
+	server_name {{ server_name }};
+	location / {
+    	proxy_pass http://{{ backend_server }};
+	}
+}

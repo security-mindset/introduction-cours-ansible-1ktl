@@ -1,0 +1,5 @@
+---
+packages_list:
+  - apache2
+  - git
+  - curl

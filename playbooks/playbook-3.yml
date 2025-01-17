@@ -1,0 +1,20 @@
+---
+- name: Collecter les facts
+  hosts: "{{host}}"
+  vars:
+    host: "serveur2"
+  become: true
+ 
+  tasks:
+  - name: Vérifier le système d'exploitation
+    debug: 
+        msg: Ce serveur utilise {{ ansible_distribution }} {{ansible_facts['os_family']}}
+      
+  
+  - name: Installer nginx seulement sur Ubuntu
+    apt:
+      name: nginx
+      state: present
+    when: ansible_facts['os_family'] == 'Debian'
+  
+    

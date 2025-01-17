@@ -1,0 +1,31 @@
+---
+- name: Collecter les facts
+  hosts: "{{host}}"
+  vars:
+    host: "serveur2"
+    packages_list: 
+    - apache2
+    - git
+    - curl
+  become: true
+ 
+  tasks:
+  - name: Installer plusieurs paquets
+    apt:
+      name: "{{ item }}"
+      state: present
+    loop:
+    - apache2
+    - git
+    - curl
+  
+  # with_items
+  - name: Installer plusieurs paquets
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+    - apache2
+    - git
+    - curl
+    

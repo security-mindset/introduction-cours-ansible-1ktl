@@ -1,0 +1,16 @@
+---
+- name: Collecter les facts
+  hosts: "{{host}}"
+  become: true
+  tasks:
+  - name: Copier le fichier de configuration Apache
+    copy:
+      src: apache.conf
+      dest: /etc/httpd/conf/httpd.conf
+    notify: Restart Apache
+
+  handlers:
+    - name: Restart Apache
+      service:
+        name: httpd
+        state: restarted

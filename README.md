@@ -8,7 +8,6 @@ echo "VOTRE_CLE" >> ~/.ssh/authorized_keys
 
 # Pour les instances EC2 avec keypair
 sudo chmod 400 1000techLeader.pem
-
 ssh -i 1000techLeader.pem ubuntu@34.229.78.91
 # Inventaires
 

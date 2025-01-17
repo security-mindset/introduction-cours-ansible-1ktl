@@ -1,0 +1,38 @@
+---
+- name: Collecter les facts
+  hosts: "{{host}}"
+  vars:
+    host: "serveur2"
+  become: true
+ 
+  tasks:
+  # - name: Vérifier le système d'exploitation
+  #   debug: 
+  #       msg: Ce serveur utilise {{ ansible_distribution }}
+  # - name: Echo host var
+  #   debug: 
+  #       msg: varibale host {{host}}
+
+  # - name: Vérifier la version de Python
+  #   shell: python3 --version
+  #   register: python_version
+
+  # - name: Afficher le résultat
+  #   debug:
+  #      msg: "Version de Python : {{ python_version.stdout }}"
+
+  # - name: Créer le répertoire /tmp/mydir
+  #   file:
+  #      path: /tmp/mydir
+  #      state: directory
+  #      mode: '0755'
+  #      owner: ubuntu
+  #      group: ubuntu
+  
+  - name: Copier un fichier de configuration
+    copy:
+       src: file.conf
+       dest: /tmp/mydir/config.conf
+       owner: ubuntu
+       group: ubuntu
+       mode: '0644'

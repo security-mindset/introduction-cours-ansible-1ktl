@@ -1,0 +1,12 @@
+---
+- name: Collecter les facts
+  hosts: "{{host}}"
+  vars_files:
+    - packages.yaml
+  become: true
+  tasks:
+  - name: Installer plusieurs paquets
+    apt:
+      name: "{{ item }}"
+      state: present
+    loop: "{{packages_list}}"

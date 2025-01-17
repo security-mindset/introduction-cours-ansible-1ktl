@@ -1,0 +1,19 @@
+---
+- name: Collecter les facts
+  hosts: "{{host}}"
+  become: true
+  vars:
+    reverse_list:
+    - http_port: 80
+      server_name: security-mindset.fr
+      backend_server: 127.0.0.1:80
+    - http_port: 80
+      server_name: api.security-mindset.fr
+      backend_server: 127.0.0.1:9090
+  tasks:
+  - name: Déployer le fichier de configuration Nginx
+    template:
+      src: nginx.conf.j2
+      dest: /tmp/nginx.conf
+    loop: "{{reverse_list}}"
+

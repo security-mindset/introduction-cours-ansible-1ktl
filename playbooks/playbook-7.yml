@@ -1,0 +1,14 @@
+---
+- name: Collecter les facts
+  hosts: "{{host}}"
+  become: true
+  vars:
+    http_port: 80
+    server_name: security-mindset.fr
+    backend_server: 127.0.0.1:80
+  tasks:
+  - name: Déployer le fichier de configuration Nginx
+    template:
+      src: nginx.conf.j2
+      dest: /tmp/nginx.conf
+
